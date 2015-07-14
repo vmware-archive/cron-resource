@@ -83,16 +83,5 @@ var _ = Describe("In", func() {
 			Expect(requested.Version.Time.Unix()).Should(Equal(request.Version.Time.Unix()))
 			Expect(requested.Source).Should(Equal(request.Source))
 		})
-
-		// TODO: does the `in' script ever get called without a version ?
-		// Context("when the request has no time in its version", func() {
-		// 	BeforeEach(func() {
-		// 		request.Version = models.Version{}
-		// 	})
-
-		// 	It("reports the current time as the version", func() {
-		// 		Expect(response.Version.Time.Unix()).Should(BeNumerically("~", time.Now().Unix(), 1))
-		// 	})
-		// })
 	})
 })
