@@ -7,13 +7,13 @@ matches the crontab expression
 
 * `expression`: *Required.* The crontab expression:
 
-    field         allowed values
-    -----         --------------
-    minute        0-59
-    hour          0-23
-    day of month  1-31
-    month         1-12 (or names, see below)
-    day of week   0-7 (0 or 7 is Sun, or use names)
+    |field       | allowed values |
+    |-------------|----------------|
+    |minute       | 0-59 |
+    |hour         | 0-23 |
+    |day of month | 1-31 |
+    |month        | 1-12 (or names, see below) |
+    |day of week  | 0-7 (0 or 7 is Sun, or use names) |
 
   e.g.
 
