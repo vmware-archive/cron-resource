@@ -32,9 +32,10 @@ matches the crontab expression
 
 ### `check`: Report the current time.
 
-Returns a new version only if the current minute matches the crontab
-expression and no version was previously returned during the current
-minute.
+Returns `time.Now()` as the version only if a minute since we last
+fired matches the crontab expression. The first time the script runs
+it will fire if a minute in the last hour matches the crontab
+expression.
 
 #### Parameters
 

@@ -79,7 +79,7 @@ var _ = Describe("Check", func() {
 				Context("when no version is given", func() {
 					It("outputs time.Now()", func() {
 						Expect(response).To(HaveLen(1))
-						Expect(response[0].Time.Unix()).To(BeNumerically("~", time.Now().Unix(), 60))
+						Expect(response[0].Time.Unix()).To(BeNumerically("~", time.Now().Unix(), 1))
 					})
 				})
 
@@ -101,8 +101,22 @@ var _ = Describe("Check", func() {
 
 						It("outputs time.Now()", func() {
 							Expect(response).To(HaveLen(1))
-							Expect(response[0].Time.Unix()).To(BeNumerically("~", time.Now().Unix(), 60))
+							Expect(response[0].Time.Unix()).To(BeNumerically("~", time.Now().Unix(), 1))
 						})
+					})
+				})
+			})
+
+			Context("when given a crontab expression that triggers 30 minutes ago", func() {
+				BeforeEach(func() {
+					halfHourAgo := time.Now().Add(-30 * time.Minute)
+					request.Source.Expression = fmt.Sprintf("%d * * * *", halfHourAgo.Minute())
+				})
+
+				Context("when no version is given", func() {
+					It("outputs time.Now()", func() {
+						Expect(response).To(HaveLen(1))
+						Expect(response[0].Time.Unix()).To(BeNumerically("~", time.Now().Unix(), 1))
 					})
 				})
 			})
@@ -123,8 +137,9 @@ var _ = Describe("Check", func() {
 						request.Version.Time = time.Now().Add(-25 * time.Hour)
 					})
 
-					It("ignores the missed event from the last hour and doesn't output any versions", func() {
-						Expect(response).To(BeEmpty())
+					It("outputs time.Now()", func() {
+						Expect(response).To(HaveLen(1))
+						Expect(response[0].Time.Unix()).To(BeNumerically("~", time.Now().Unix(), 1))
 					})
 				})
 
@@ -139,40 +154,52 @@ var _ = Describe("Check", func() {
 				})
 			})
 
-			Context("when a different timezone is specified", func() {
-				BeforeEach(func() {
-					request.Source.Location = "America/Vancouver"
-				})
+			Context("Timezones", func() {
+				var loc *time.Location
+				var err error
 
-				Context("when given a crontab expression that triggers in the current hour in the given timezone", func() {
+				Context("when a different timezone is specified", func() {
 					BeforeEach(func() {
-						loc, err := time.LoadLocation("America/Vancouver")
+						request.Source.Location = "America/Vancouver"
+						loc, err = time.LoadLocation("America/Vancouver")
 						Expect(err).NotTo(HaveOccurred())
-						request.Source.Expression = fmt.Sprintf("* %d * * *", time.Now().In(loc).Hour())
 					})
 
-					It("outputs time.Now()", func() {
-						Expect(response).To(HaveLen(1))
-						Expect(response[0].Time.Unix()).To(BeNumerically("~", time.Now().Unix(), 60))
+					Context("when given a crontab expression that triggers in the current hour in the given timezone", func() {
+
+						BeforeEach(func() {
+							request.Source.Expression = fmt.Sprintf("* %d * * *", time.Now().In(loc).Hour())
+						})
+
+						It("outputs time.Now()", func() {
+							Expect(response).To(HaveLen(1))
+							Expect(response[0].Time.Unix()).To(BeNumerically("~", time.Now().Unix(), 1))
+							_, offset := response[0].Time.Zone()
+							_, expectedOffset := time.Now().In(loc).Zone()
+							Expect(offset).To(Equal(expectedOffset))
+						})
 					})
 				})
-			})
 
-			Context("when no timezone is given", func() {
-				BeforeEach(func() {
-					request.Source.Location = ""
-				})
-
-				Context("when given a crontab expression that triggers in the current hour in UTC", func() {
+				Context("when no timezone is given", func() {
 					BeforeEach(func() {
-						loc, err := time.LoadLocation("UTC")
+						request.Source.Location = ""
+						loc, err = time.LoadLocation("UTC")
 						Expect(err).NotTo(HaveOccurred())
-						request.Source.Expression = fmt.Sprintf("* %d * * *", time.Now().In(loc).Hour())
 					})
 
-					It("outputs time.Now()", func() {
-						Expect(response).To(HaveLen(1))
-						Expect(response[0].Time.Unix()).To(BeNumerically("~", time.Now().Unix(), 60))
+					Context("when given a crontab expression that triggers in the current hour", func() {
+						BeforeEach(func() {
+							request.Source.Expression = fmt.Sprintf("* %d * * *", time.Now().In(loc).Hour())
+						})
+
+						It("outputs time.Now()", func() {
+							Expect(response).To(HaveLen(1))
+							Expect(response[0].Time.Unix()).To(BeNumerically("~", time.Now().Unix(), 1))
+							_, offset := response[0].Time.Zone()
+							_, expectedOffset := time.Now().In(loc).Zone()
+							Expect(offset).To(Equal(expectedOffset))
+						})
 					})
 				})
 			})
