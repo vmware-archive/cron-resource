@@ -17,15 +17,16 @@ matches the crontab expression
 
   e.g.
 
-    0 23 * * 1-5 # Run at 11:00pm from Monday to Friday
+    `0 23 * * 1-5` # Run at 11:00pm from Monday to Friday
 
 * `location`: *Optional.* Defaults to UTC. Accepts any timezone that
   can be parsed by https://godoc.org/time#LoadLocation
 
   e.g.
 
-     America/New_York
-     America/Vancouver
+  `America/New_York`
+       
+  `America/Vancouver`
 
 ## Behavior
 
