@@ -12,7 +12,7 @@ import (
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"github.com/onsi/gomega/gexec"
-	"github.com/pivotal-cf-experimental/concourse-cron-resource/models"
+	"github.com/pivotal-cf-experimental/croncourse-resource/models"
 )
 
 var _ = Describe("In", func() {

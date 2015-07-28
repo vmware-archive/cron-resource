@@ -13,7 +13,7 @@ var inPath string
 var _ = BeforeSuite(func() {
 	var err error
 
-	inPath, err = gexec.Build("github.com/pivotal-cf-experimental/concourse-cron-resource/in")
+	inPath, err = gexec.Build("github.com/pivotal-cf-experimental/croncourse-resource/in")
 	Expect(err).ShouldNot(HaveOccurred())
 })
 

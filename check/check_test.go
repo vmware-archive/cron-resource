@@ -7,8 +7,7 @@ import (
 	"time"
 
 	"github.com/gorhill/cronexpr"
-	"github.com/pivotal-cf-experimental/concourse-cron-resource/models"
-	// . "github.com/pivotal-cf-experimental/concourse-cron-resource/check"
+	"github.com/pivotal-cf-experimental/croncourse-resource/models"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
