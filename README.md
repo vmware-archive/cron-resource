@@ -3,6 +3,17 @@
 Implements a resource that reports new versions when the current time
 matches the crontab expression
 
+## Add to your Concourse deployment
+
+Note: Specifying the resource_types in your manifest will overwrite the [defaults](https://github.com/concourse/concourse/blob/master/jobs/groundcrew/spec#L68-L96). You will need to add the defaults in your manifest as well.
+
+```
+groundcrew:
+  resource_types:
+  - type: krafa
+    image: docker:///cftoolsmiths/croncourse-resource
+```
+
 ## Source Configuration
 
 * `expression`: *Required.* The crontab expression:
