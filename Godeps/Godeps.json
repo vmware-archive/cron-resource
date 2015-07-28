@@ -1,0 +1,24 @@
+{
+	"ImportPath": "github.com/pivotal-cf-experimental/croncourse-resource",
+	"GoVersion": "go1.4.2",
+	"Packages": [
+		"./..."
+	],
+	"Deps": [
+		{
+			"ImportPath": "github.com/gorhill/cronexpr",
+			"Comment": "1.0.0",
+			"Rev": "a557574d6c024ed6e36acc8b610f5f211c91568a"
+		},
+		{
+			"ImportPath": "github.com/onsi/ginkgo",
+			"Comment": "v1.2.0-8-g25380c6",
+			"Rev": "25380c62e61d3f90436be125b8127dbae578fdef"
+		},
+		{
+			"ImportPath": "github.com/onsi/gomega",
+			"Comment": "v1.0-50-gd6c945f",
+			"Rev": "d6c945f9fdbf6cad99e85b0feff591caa268e0db"
+		}
+	]
+}
