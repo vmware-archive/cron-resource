@@ -10,7 +10,7 @@ Note: Specifying the resource_types in your manifest will overwrite the [default
 ```
 groundcrew:
   resource_types:
-  - type: krafa
+  - type: cron
     image: docker:///cftoolsmiths/croncourse-resource
 ```
 
