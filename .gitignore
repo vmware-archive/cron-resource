@@ -1,4 +1,4 @@
 *~
 *.test
 *.coverprofile
-./assets/*.sh
+assets/*.sh
