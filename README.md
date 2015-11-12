@@ -5,14 +5,7 @@ matches the crontab expression
 
 ## Add to your Concourse deployment
 
-Note: Specifying the resource_types in your manifest will overwrite the [defaults](https://github.com/concourse/concourse/blob/master/jobs/groundcrew/spec#L68-L96). You will need to add the defaults in your manifest as well.
-
-```
-groundcrew:
-  resource_types:
-  - type: cron
-    image: docker:///cftoolsmiths/croncourse-resource
-```
+There is a BOSH release that can be added alongside your Concourse deployment. You can find the BOSH release at [here](https://github.com/pivotal-cf-experimental/cron-resource-boshrelease).
 
 ## Source Configuration
 
