@@ -6,7 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/pivotal-cf-experimental/croncourse-resource/models"
+	"github.com/pivotal-cf-experimental/cron-resource/models"
 )
 
 func main() {

@@ -1,5 +1,5 @@
 {
-	"ImportPath": "github.com/pivotal-cf-experimental/croncourse-resource",
+	"ImportPath": "github.com/pivotal-cf-experimental/cron-resource",
 	"GoVersion": "go1.4.2",
 	"Packages": [
 		"./..."

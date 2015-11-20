@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/gorhill/cronexpr"
-	"github.com/pivotal-cf-experimental/croncourse-resource/models"
+	"github.com/pivotal-cf-experimental/cron-resource/models"
 )
 
 func getVersions(request models.CheckRequest) (models.CheckResponse, error) {
