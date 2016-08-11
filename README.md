@@ -56,3 +56,14 @@ version.
    the requested version
 
 ### `out`: Not implemented.
+
+## Example Configuration: 
+trigger job every five minutes.
+
+```
+  - name: 5-min-trigger
+    type: cron
+    source:
+      expression: "*/5 * * * *"
+      location: "America/New_York"
+```
