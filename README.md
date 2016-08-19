@@ -3,9 +3,25 @@
 Implements a resource that reports new versions when the current time
 matches the crontab expression
 
-## Add to your Concourse deployment
+---
+## Update your pipeline
 
-There is a BOSH release that can be added alongside your Concourse deployment. You can find the BOSH release at [here](https://github.com/pivotal-cf-experimental/cron-resource-boshrelease).
+Update your pipeline to include this new declaration of resource types. See the example pipeline yml snippet below or the Concourse docs for more details [here](https://concourse.ci/configuring-resource-types.html).
+```
+---
+resource_types:
+- name: cron-resource
+  type: docker-image
+  source:
+    repository: cftoolsmiths/cron-test
+
+resources:
+  - name: my-cron-resource
+    type: cron-resource
+    source:
+      expression: "* * * * *"
+      location: "America/New_York"
+```
 
 ## Source Configuration
 
@@ -29,7 +45,7 @@ There is a BOSH release that can be added alongside your Concourse deployment. Y
   e.g.
 
   `America/New_York`
-       
+
   `America/Vancouver`
 
 ## Behavior
@@ -57,13 +73,42 @@ version.
 
 ### `out`: Not implemented.
 
-## Example Configuration: 
-trigger job every five minutes.
+---
+## Developer Notes
+
+### Building the jobs
+
+To build the resource's go binaries, run the following command from within the cron-resource directory:
 
 ```
-  - name: 5-min-trigger
-    type: cron
-    source:
-      expression: "*/5 * * * *"
-      location: "America/New_York"
+docker run -v "$PWD":/go/src/github.com/pivotal-cf-experimental/cron-resource/ \
+           -it golang:1.7 \
+           /bin/bash /go/src/github.com/pivotal-cf-experimental/cron-resource/build_in_docker_container.sh
+```
+
+You should see two new binaries named `built-in` and `built-check`.
+
+### Testing the go binaries
+
+Start an interactive session of your docker container to run the binaries:
+
+```
+docker run -v "$PWD":/go/src/github.com/pivotal-cf-experimental/cron-resource/ \
+           -it golang:1.7 \
+           /bin/sh
+```
+
+Within the interactive session:
+
+```
+cd /go/src/github.com/pivotal-cf-experimental/cron-resource/
+./built-check
+```
+
+It looks like it hangs, but it's waiting for you to enter some JSON:
+
+```
+{"source":{"expression":"* * * * *","location":"America/New_York"} } # Paste this in after running ./built-check
+[{"time":"2016-08-19T10:15:27.183011117-04:00"}] # This is the successful output
+>>>>>>> Updates README with instructions on how to use Concourse's resource types, Adds developer notes.
 ```
