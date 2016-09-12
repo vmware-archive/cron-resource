@@ -16,10 +16,10 @@ resource_types:
     repository: cftoolsmiths/cron-test
 
 resources:
-  - name: my-cron-resource
+  - name: 10-min-trigger
     type: cron-resource
     source:
-      expression: "* * * * *"
+      expression: "*/10 * * * *"
       location: "America/New_York"
 ```
 
