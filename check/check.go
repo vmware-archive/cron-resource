@@ -28,7 +28,7 @@ func getVersions(request models.CheckRequest) (models.CheckResponse, error) {
 
 	previouslyFiredAt := request.Version.Time
 	if previouslyFiredAt.IsZero() {
-		if request.Source.FireImmedietely {
+		if request.Source.FireImmediately {
 			return append(versions, models.Version{
 				Time: now,
 			}), nil

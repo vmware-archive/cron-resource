@@ -17,7 +17,7 @@ type Source struct {
 	// min hour dom mon dow
 	Expression      string `json:"expression"`
 	Location        string `json:"location"`
-	FireImmedietely bool   `json:"fire_immediately"`
+	FireImmediately bool   `json:"fire_immediately"`
 }
 
 type InRequest struct {

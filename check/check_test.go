@@ -132,7 +132,7 @@ var _ = Describe("Check", func() {
 
 					Context("when FireImmediately is true", func() {
 						BeforeEach(func() {
-							request.Source.FireImmedietely = true
+							request.Source.FireImmediately = true
 						})
 
 						It("outputs time.Now()", func() {
