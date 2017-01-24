@@ -48,7 +48,7 @@ resources:
 
   `America/Vancouver`
 
-* `fire_immediately`: *Optional* Immediately triggers the resource the first time it is checked.
+* `fire_immediately`: *Optional.* Defaults to false. Immediately triggers the resource the first time it is checked.
 
 ## Behavior
 
