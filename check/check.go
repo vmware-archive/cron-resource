@@ -34,7 +34,7 @@ func getVersions(request models.CheckRequest) (models.CheckResponse, error) {
 	}
 
 	shouldFireAt := expr.Next(previouslyFiredAt)
-	if previouslyFiredAt.Before(shouldFireAt) && now.After(shouldFireAt) {
+	if now.After(shouldFireAt) {
 		shouldFire = true
 	}
 
