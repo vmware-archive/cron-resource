@@ -28,6 +28,12 @@ func getVersions(request models.CheckRequest) (models.CheckResponse, error) {
 
 	previouslyFiredAt := request.Version.Time
 	if previouslyFiredAt.IsZero() {
+		if request.Source.FireImmedietely {
+			return append(versions, models.Version{
+				Time: now,
+			}), nil
+		}
+
 		previouslyFiredAt = now.Add(-1 * time.Hour)
 	}
 

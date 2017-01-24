@@ -129,6 +129,17 @@ var _ = Describe("Check", func() {
 					It("doesn't output any versions", func() {
 						Expect(response).To(BeEmpty())
 					})
+
+					Context("when FireImmediately is true", func() {
+						BeforeEach(func() {
+							request.Source.FireImmedietely = true
+						})
+
+						It("outputs time.Now()", func() {
+							Expect(response).To(HaveLen(1))
+							Expect(response[0].Time.Unix()).To(BeNumerically("~", time.Now().Unix(), 1))
+						})
+					})
 				})
 
 				Context("when a version that is a day old is given", func() {
