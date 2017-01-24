@@ -48,6 +48,8 @@ resources:
 
   `America/Vancouver`
 
+* `fire_immediately`: *Optional.* Defaults to false. Immediately triggers the resource the first time it is checked.
+
 ## Behavior
 
 ### `check`: Report the current time.
