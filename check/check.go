@@ -26,19 +26,21 @@ func getVersions(request models.CheckRequest) (models.CheckResponse, error) {
 		return nil, err
 	}
 
+	now := time.Now().In(loc)
+
 	previouslyFiredAt := request.Version.Time
 	if previouslyFiredAt.IsZero() {
-		previouslyFiredAt = time.Now().In(loc).Add(-1 * time.Hour)
+		previouslyFiredAt = now.Add(-1 * time.Hour)
 	}
 
 	shouldFireAt := expr.Next(previouslyFiredAt)
-	if previouslyFiredAt.Before(shouldFireAt) && time.Now().After(shouldFireAt) {
+	if previouslyFiredAt.Before(shouldFireAt) && now.After(shouldFireAt) {
 		shouldFire = true
 	}
 
 	if shouldFire {
 		versions = append(versions, models.Version{
-			Time: time.Now().In(loc),
+			Time: now,
 		})
 	}
 
