@@ -13,7 +13,7 @@ resource_types:
 - name: cron-resource
   type: docker-image
   source:
-    repository: cftoolsmiths/cron-test
+    repository: cftoolsmiths/cron-resource
 
 resources:
   - name: 10-min-trigger
@@ -21,6 +21,7 @@ resources:
     source:
       expression: "*/10 * * * *"
       location: "America/New_York"
+      fire_immediately: true
 ```
 
 ## Source Configuration
