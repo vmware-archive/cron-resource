@@ -13,7 +13,7 @@ resource_types:
 - name: cron-resource
   type: docker-image
   source:
-    repository: cftoolsmiths/cron-resource
+    repository: pivotal-cf-experimental/cron-resource
 
 resources:
   - name: 10-min-trigger
