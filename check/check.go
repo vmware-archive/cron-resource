@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/gorhill/cronexpr"
+	"github.com/mbrevoort/cronexpr"
 	"github.com/pivotal-cf-experimental/cron-resource/models"
 )
 
