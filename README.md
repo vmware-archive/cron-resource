@@ -85,7 +85,7 @@ To build the resource's go binaries, run the following command from within the c
 
 ```
 docker run -v "$PWD":/go/src/github.com/pivotal-cf-experimental/cron-resource/ \
-           -it golang:1.7 \
+           -it golang:1.13 \
            /bin/bash /go/src/github.com/pivotal-cf-experimental/cron-resource/build_in_docker_container.sh
 ```
 
@@ -97,7 +97,7 @@ Start an interactive session of your docker container to run the binaries:
 
 ```
 docker run -v "$PWD":/go/src/github.com/pivotal-cf-experimental/cron-resource/ \
-           -it golang:1.7 \
+           -it golang:1.l3 \
            /bin/sh
 ```
 
