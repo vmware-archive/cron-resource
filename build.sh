@@ -8,5 +8,7 @@ go get github.com/onsi/ginkgo/ginkgo
 go get github.com/onsi/gomega
 ginkgo -r .
 
-go build -o built-in in/main.go
-go build -o built-check check/check.go
+mkdir -p tmp/build
+
+go build -o tmp/build/in in/main.go
+go build -o tmp/build/check check/check.go

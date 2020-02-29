@@ -122,7 +122,7 @@ var _ = Describe("Check", func() {
 
 			Context("when given a crontab expression that triggers in the previous hour", func() {
 				BeforeEach(func() {
-					request.Source.Expression = fmt.Sprintf("0 %d * * *", time.Now().Hour()-1)
+					request.Source.Expression = fmt.Sprintf("0 %d * * *", (time.Now().Hour()+24-1)%24)
 				})
 
 				Context("when no version is given", func() {

@@ -74,44 +74,14 @@ version.
 1. *Output directory.* The directory where the in script will store
    the requested version
 
-### `out`: Not implemented.
+### `out`: Not supported.
 
----
 ## Developer Notes
 
-### Building the jobs
-
-To build the resource's go binaries, run the following command from within the cron-resource directory:
+You can test the behavior by simulating Concourse's invocations. For example:
 
 ```
-docker run -v "$PWD":/go/src/github.com/pivotal-cf-experimental/cron-resource/ \
-           -it golang:1.13 \
-           /bin/bash /go/src/github.com/pivotal-cf-experimental/cron-resource/build_in_docker_container.sh
-```
-
-You should see two new binaries named `built-in` and `built-check`.
-
-### Testing the go binaries
-
-Start an interactive session of your docker container to run the binaries:
-
-```
-docker run -v "$PWD":/go/src/github.com/pivotal-cf-experimental/cron-resource/ \
-           -it golang:1.l3 \
-           /bin/sh
-```
-
-Within the interactive session:
-
-```
-cd /go/src/github.com/pivotal-cf-experimental/cron-resource/
-./built-check
-```
-
-It looks like it hangs, but it's waiting for you to enter some JSON:
-
-```
-{"source":{"expression":"* * * * *","location":"America/New_York"} } # Paste this in after running ./built-check
-[{"time":"2016-08-19T10:15:27.183011117-04:00"}] # This is the successful output
->>>>>>> Updates README with instructions on how to use Concourse's resource types, Adds developer notes.
+$ echo '{"source":{"expression":"* * * * *","location":"America/New_York"}}' \
+  | go run ./check
+[{"time":"2016-08-19T10:15:27.183011117-04:00"}]
 ```

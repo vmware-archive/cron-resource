@@ -2,4 +2,4 @@
 *.test
 *.coverprofile
 assets/*.sh
-/built-*
+/tmp
