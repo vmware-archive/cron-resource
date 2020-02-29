@@ -1,7 +1,6 @@
-#!/usr/bin/bash
-set -ex
+#!/usr/bin/env bash
 
-cd $GOPATH/src/github.com/pivotal-cf-experimental/cron-resource
+set -ex
 
 go mod download
 
